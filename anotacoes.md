@@ -1,3 +1,5 @@
+
+![alt text](image.png)
 # Diferenças entre frameworks para Backend
 
 Express -> framework 'non opinionated' -> temos que criar a arquitetura (divisão de pastas e arquivos) manualmente
