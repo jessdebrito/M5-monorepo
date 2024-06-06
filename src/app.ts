@@ -1,22 +1,17 @@
-import { ManagerService } from "./services";
+import { ManagerService } from "./services/manager.service";
 import express, { request, response } from "express";
 
 const app = express();
 app.use(express.json());
 const managerService = new ManagerService();
 
-app.get("/", (req, res) => {
-  return res.json({ message: "Olá mundo" });
+app.get("/managers", async (req, res) => {
+  const managers = await managerService.findAll;
+  return res.json(managers);
 });
 
-app.get("/managers", (req, res) => {
-  return res.json(managerService.findAll());
-});
-
-app.post("/managers", (req, res) => {
-  console.log(req.body);
-  const manager = managerService.create(req.body);
-
+app.post("/managers", async (req, res) => {
+  const manager = await managerService.create(req.body);
   return res.status(201).json(manager);
 });
 
@@ -33,6 +28,4 @@ app.get("/managers/:id", (req, res) => {
   return res.json(foundManager);
 });
 
-
-
-app.listen(3000, () => console.log("Servidor rodando na porta 3000"));
+app.listen(3000, () => console.log("Servidor rodando na porta 3000")); 
