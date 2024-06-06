@@ -1,28 +1,28 @@
 import { prisma } from "../../prisma/prisma.client";
-import { Manager, ManagerCreate } from "../interfaces";
+import { Project, ProjectCreate } from "../interfaces";
  
 
-  export class ManagerService {
-    public create = async (payload: ManagerCreate) => {
-       //const newManager = await prisma.manager.create({ data: payload });
-    // return newManager;
+  export class ProjectService {
+    public create = async (payload: ProjectCreate) => {
+       //const newProject = await prisma.project.create({ data: payload });
+    // return newProject;
     // mesmo retorno
-      const newManager = await prisma.manager.create({ data: payload });
+      const newProject = await prisma.project.create({ data: payload });
   
-      return newManager;
+      return newProject;
     };
   
   public findAll = async () => {
-    //SELECT * FROM "Manager"
-    return await prisma.manager.findMany();
+    //SELECT * FROM "Project"
+    return await prisma.project.findMany();
   };
 
-  public findOne = async (managerId: number) => {
-    // SELECT * FROM "Manager" WHERE id = 1;
-    const foundManager = await prisma.manager.findUnique({
-      where: { id: managerId },
+  public findOne = async (projectId: number) => {
+    // SELECT * FROM "Project" WHERE id = 1;
+    const foundProject = await prisma.project.findUnique({
+      where: { id: projectId },
     });
 
-    return foundManager;
+    return foundProject;
   };
 }
