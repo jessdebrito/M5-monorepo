@@ -14,8 +14,24 @@ datasource db {
 }
 
 model Manager {
-  id Int @id @default(autoincrement())
-  name  String @db.VarChar(255)
-  email String @db.VarChar(255)
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  email     String   @db.VarChar(255)
   createdAt DateTime @default(now())
+
+ //Campo 'virtual' para o prisma entender o relacionamento
+  project Project?
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255)
+  description String   @db.Text
+  createdAt   DateTime @default(now())
+
+  // Chave Estrangeira (FK) -
+  managerId Int @unique
+
+  //Campo 'virtual' para o prisma entender o relacionamento
+  manager Manager @relation(fields: [managerId], references: [id])
 }

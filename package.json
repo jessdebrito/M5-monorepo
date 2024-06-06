@@ -2,6 +2,7 @@
   "description": "",
   "scripts": {
     "dev": "tsnd --cls src/app.ts",
+    "migrate": "prisma migrate dev",
     "ola": "echo 'Olá mundo'"
   },
   "dependencies": {
