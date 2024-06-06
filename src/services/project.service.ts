@@ -6,7 +6,7 @@ import { Project, ProjectCreate } from "../interfaces";
  
 export class ProjectService {
   public create = async (payload: ProjectCreate) => {
-    return await prisma.projects.create({ data: payload });
+    return await prisma.project.create({ data: payload });
   };
   public findAll = async () => {
     return await prisma.project.findMany({ include: { manager: true } });
