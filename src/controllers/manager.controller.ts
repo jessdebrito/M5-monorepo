@@ -1,5 +1,3 @@
-
-
 import { Request, Response } from "express";
 import { ManagerService } from "../services";
 

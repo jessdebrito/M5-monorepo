@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ProjectService } from "../services";
+import { ProjectService } from "../services/project.service";
 
 export class ProjectController {
   public create = async (req: Request, res: Response) => {
@@ -18,12 +18,12 @@ export class ProjectController {
 
   public findOne = async (req: Request, res: Response) => {
     const projectService = new ProjectService();
-    const project = await projectService.findOne(Number(req.params.projectId));
+    const foundProject = await projectService.findOne(Number(req.params.id));
 
-    if (!project) {
+    if (!foundProject) {
       return res.status(404).json({ error: "Project not found" });
     }
 
-    return res.json(project);
+    return res.json(foundProject);
   };
 }
