@@ -1,20 +1,18 @@
+/* import { prisma } from "../../prisma/prisma.client";
+ */
 import { prisma } from "../../prisma/prisma.client";
 import { Project, ProjectCreate } from "../interfaces";
 
+ 
 export class ProjectService {
-  public create = async (payload: ProjectCreate): Promise<Project> => {
-    // const newProject = await prisma.project.create({ data: payload });
-    // return newProject;
-
-    return await prisma.project.create({ data: payload });
+  public create = async (payload: ProjectCreate) => {
+    return await prisma.projects.create({ data: payload });
+  };
+  public findAll = async () => {
+    return await prisma.project.findMany({ include: { manager: true } });
   };
 
-  public findAll = async (): Promise<Project[]> => {
-    // SELECT * FROM "Project";
-    return await prisma.project.findMany();
-  };
-
-  public findOne = async (projectId: number): Promise<Project | null> => {
+  public findOne = async (projectId: number) => {
     return await prisma.project.findFirst({ where: { id: projectId } });
-  };
+  }; 
 }
