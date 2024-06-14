@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ManagerService } from "../services";
+import { ManagerService, ExemploService } from "../services";
 
 export class ManagerController {
   public create = async (req: Request, res: Response) => {
@@ -18,12 +18,12 @@ export class ManagerController {
 
   public findOne = async (req: Request, res: Response) => {
     const managerService = new ManagerService();
-    const manager = await managerService.findOne(Number(req.params.managerId));
+    const foundManager = await managerService.findOne(Number(req.params.id));
 
-    if (!manager) {
+    if (!foundManager) {
       return res.status(404).json({ error: "Manager not found" });
     }
 
-    return res.json(manager);
+    return res.json(foundManager);
   };
 }
