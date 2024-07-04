@@ -17,7 +17,7 @@ app.post("/projects", projectController.create);
 app.get("/projects", projectController.findAll);
 app.get("/projects/:projectId", projectController.findOne);
 
-/* TODO:
+/* TO DO:
   - Implementar rotas/controllers/services/interfaces para TASKS
 */
 
