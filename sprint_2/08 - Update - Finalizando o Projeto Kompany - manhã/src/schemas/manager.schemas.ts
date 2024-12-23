@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const managerSchema = z.object({
   id: z.number().int().positive(),
-  name: z.string().max(20),
+  name: z.string().max(20).findUnique(),
   email: z.string().email().max(255),
   isActive: z.boolean().default(true),
   updatedAt: z.date(),
